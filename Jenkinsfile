@@ -276,7 +276,11 @@ pipeline {
     post {
         always {
             echo 'Cleaning up workspace...'
-            cleanWs()
+            script {
+                node {
+                    cleanWs(deleteDirs: true)
+                }
+            }
         }
         success {
             echo 'SCM pipeline completed successfully!'
